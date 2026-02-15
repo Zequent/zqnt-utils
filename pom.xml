@@ -145,6 +145,16 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!-- Include proto files in the JAR so other services can use them -->
+            <resource>
+                <directory>src/main/proto</directory>
+                <targetPath>META-INF/proto</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <extensions>
             <extension>
                 <groupId>kr.motd.maven</groupId>
