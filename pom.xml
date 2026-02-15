@@ -6,14 +6,6 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
     </properties>
-    <parent>
-        <groupId>com.zequent.framework</groupId>
-        <artifactId>zequent-framework</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
-    
-    <artifactId>utils</artifactId>
 
     <distributionManagement>
         <repository>
