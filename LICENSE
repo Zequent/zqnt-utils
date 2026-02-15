@@ -1,0 +1,53 @@
+Zequent SDK License Agreement
+
+Copyright (c) 2024 Zequent. All rights reserved.
+
+TERMS AND CONDITIONS
+
+1. GRANT OF LICENSE
+   Zequent grants you a non-exclusive, non-transferable license to use this SDK
+   solely in accordance with the terms of this License.
+
+2. PERMITTED USE
+   You may:
+   - Download, install, and use this SDK in its original form
+   - Use the compiled SDK in your projects
+   - Use the SDK for non-commercial purposes
+
+3. RESTRICTIONS
+   You may NOT:
+   - Modify, adapt, translate, reverse engineer, decompile, disassemble, or
+     create derivative works based on this SDK
+   - Remove or alter any proprietary notices, labels, or marks
+   - Rent, lease, lend, sell, transfer, assign, or sublicense this SDK
+   - Use this SDK for commercial purposes without a Commercial License
+
+4. COMMERCIAL USE
+   Any commercial use of this SDK requires a separate Commercial License
+   agreement from Zequent. For commercial licensing inquiries, contact:
+   licensing@zequent.com
+
+5. INTELLECTUAL PROPERTY
+   The SDK is licensed, not sold. All intellectual property rights remain
+   the exclusive property of Zequent.
+
+6. DISCLAIMER OF WARRANTIES
+   THIS SDK IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+7. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL ZEQUENT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+   CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO THIS SDK.
+
+8. TERMINATION
+   This license terminates immediately upon any breach of these terms.
+   Upon termination, you must destroy all copies of the SDK.
+
+9. GOVERNING LAW
+   This License is governed by the laws of the jurisdiction in which Zequent
+   is located.
+
+10. CONTACT
+    For licensing inquiries and commercial use:
+    licensing@zequent.com

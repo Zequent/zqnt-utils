@@ -3,8 +3,58 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.zequent</groupId>
+    <artifactId>zqnt-utils</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Zequent Utils</name>
+    <description>Zequent Framework Utilities SDK for gRPC services with Quarkus integration</description>
+    <url>https://github.com/Zequent/zqnt-utils</url>
+    <inceptionYear>2024</inceptionYear>
+
+    <organization>
+        <name>Zequent</name>
+        <url>https://zequent.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Zequent SDK License</name>
+            <url>https://github.com/Zequent/zqnt-utils/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+            <comments>Non-commercial use only. Commercial use requires a Commercial License.</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/Zequent/zqnt-utils.git</connection>
+        <developerConnection>scm:git:https://github.com/Zequent/zqnt-utils.git</developerConnection>
+        <url>https://github.com/Zequent/zqnt-utils</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Zequent/zqnt-utils/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>zequent</id>
+            <name>Zequent Team</name>
+            <email>support@zequent.com</email>
+            <organization>Zequent</organization>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <distributionManagement>
