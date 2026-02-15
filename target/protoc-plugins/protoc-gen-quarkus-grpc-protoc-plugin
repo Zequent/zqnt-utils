@@ -1,8 +1,0 @@
-#!/bin/sh
-
-CP="/home/sabri/.m2/repository/io/quarkus/quarkus-grpc-protoc-plugin/3.30.8/quarkus-grpc-protoc-plugin-3.30.8.jar":"/home/sabri/.m2/repository/com/google/protobuf/protobuf-java/4.32.1/protobuf-java-4.32.1.jar":"/home/sabri/.m2/repository/io/smallrye/common/smallrye-common-annotation/2.14.0/smallrye-common-annotation-2.14.0.jar":"/home/sabri/.m2/repository/com/salesforce/servicelibs/jprotoc/1.2.2/jprotoc-1.2.2.jar"
-ARGS=""
-JVMARGS=""
-
-"/home/sabri/.vscode/extensions/redhat.java-1.52.0-linux-x64/jre/21.0.9-linux-x86_64/bin/java" $JVMARGS -cp $CP io.quarkus.grpc.protoc.plugin.MutinyGrpcGenerator $ARGS
-
