@@ -55,6 +55,12 @@
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+        <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
+        <quarkus.platform.version>3.30.8</quarkus.platform.version>
+        <surefire-plugin.version>3.5.0</surefire-plugin.version>
+        <compiler-plugin.version>3.13.0</compiler-plugin.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
     </properties>
 
     <distributionManagement>
@@ -71,6 +77,19 @@
             <url>https://maven.pkg.github.com/Zequent/zqnt-utils</url>
         </repository>
     </repositories>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${quarkus.platform.group-id}</groupId>
+                <artifactId>${quarkus.platform.artifact-id}</artifactId>
+                <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
     <dependencies>
@@ -152,6 +171,12 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jdk8</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.42</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -201,6 +226,8 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>1.18.42</version>
+
                         </path>
                         <dependency>
                             <groupId>org.projectlombok</groupId>
