@@ -1,7 +1,6 @@
 package com.zequent.framework.utils.core;
 
 import com.google.protobuf.Timestamp;
-import jakarta.enterprise.context.ApplicationScoped;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -10,7 +9,6 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 
-@ApplicationScoped
 public class ProtobufHelpers {
 
 	// LocalDateTime → Protobuf Timestamp

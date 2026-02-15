@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.google.protobuf.util.JsonFormat;
 
-import jakarta.enterprise.context.ApplicationScoped;
 
-@ApplicationScoped
 public class ProtoEntityMapperUtils {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
