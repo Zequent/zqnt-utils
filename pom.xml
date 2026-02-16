@@ -60,7 +60,6 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <grpc.version>1.62.2</grpc.version>
         <protobuf.version>3.25.1</protobuf.version>
-        <mutiny.version>2.6.0</mutiny.version>
     </properties>
 
     <distributionManagement>
@@ -95,11 +94,6 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>${protobuf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.smallrye.reactive</groupId>
-            <artifactId>mutiny</artifactId>
-            <version>${mutiny.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -212,7 +206,42 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire-plugin.version}</version>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-proto-files</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF/proto</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/proto</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <excludes>
+                        <!-- Exclude proto files from root to avoid duplicates -->
+                        <exclude>*.proto</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
