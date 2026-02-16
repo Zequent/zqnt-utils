@@ -2,6 +2,7 @@ package com.zequent.framework.utils.missionautonomy.dto;
 
 import com.zequent.framework.common.proto.SchedulerType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class SchedulerDTO implements Serializable {
     private UUID id;
     private LocalDateTime createdAt;

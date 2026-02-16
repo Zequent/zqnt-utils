@@ -431,9 +431,9 @@ message CurrentCapabilities{
 // ========== SHARED COORDINATE AND CONTROL MESSAGES ==========
 
 message Coordinates {
-  float latitude = 1;
-  float longitude = 2;
-  float altitude = 3;
+  double latitude = 1;
+  double longitude = 2;
+  double altitude = 3;
 }
 
 
@@ -616,6 +616,7 @@ message TaskProtoDTO{
   optional FlighttaskBreakReasonEnumProto breakReason = 34;
   optional google.protobuf.Timestamp createdAt = 35;
   optional google.protobuf.Timestamp updatedAt = 36;
+  optional int32 globalGimbalPitch = 37;
 
 }
 
