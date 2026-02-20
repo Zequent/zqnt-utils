@@ -1,4 +1,4 @@
-package com.zqnt.utils.missionautonomy.domains;
+package com.zqnt.utils.asset.domains;
 
 import com.zequent.framework.common.proto.AssetConnection;
 import com.zequent.framework.common.proto.AssetTypeEnum;
@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * DTO for {@link com.zequent.framework.services.connector.entities.SubAsset}
+ * DTO for {@link com.zequent.framework.services.connector.entities.Asset}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SubAssetDTO implements Serializable {
+public class AssetDTO implements Serializable {
 	private UUID id;
 	private LocalDateTime createdAt;
 	private LocalDateTime modifiedAt;
@@ -29,11 +29,12 @@ public class SubAssetDTO implements Serializable {
 	private AssetTypeEnum type;
 	private AssetVendor vendor;
 	private AssetConnection connection;
-	private String connectionString;
 	private String model;
-	private Integer port;
+	private String connectionString;
 	private String liveStreamServer;
+	private String externalId;
 	private String externalDeviceType;
 	private String externalDeviceSubType;
-	private String externalId;
+	private SubAssetDTO subAsset;
+	private UUID organization;
 }
