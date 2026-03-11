@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 /**
  * DTO for {@link Waypoint}
@@ -18,10 +16,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 public class WaypointDTO implements Serializable {
-    private UUID id;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
-    private String modifiedFrom;
     private Double latitude;
     private Double longitude;
     private Float altitude;
@@ -30,5 +24,4 @@ public class WaypointDTO implements Serializable {
     private VehicleAction vehicleAction;
 	private Integer wpOrder;
 	private Integer gimbalPitch;
-	private UUID task;
 }

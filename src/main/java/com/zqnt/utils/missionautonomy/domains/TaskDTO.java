@@ -1,6 +1,7 @@
 package com.zqnt.utils.missionautonomy.domains;
 
 import com.zequent.framework.common.proto.*;
+import com.zqnt.utils.missionautonomy.domains.config.TaskConfigTemplate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,53 +9,143 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 /**
  * DTO for {@link Task}
+ * <p>
+ * This DTO uses a polymorphic configuration approach where task-specific
+ * parameters are encapsulated in the {@link TaskConfigTemplate} implementation.
+ * <p>
+ * Usage example:
+ * <pre>{@code
+ * // Create a waypoint task
+ * WaypointTaskConfig config = WaypointTaskConfig.builder()
+ *     .flightId("FLIGHT-123")
+ *     .waypoints(Arrays.asList(wp1, wp2, wp3))
+ *     .globalSpeed(7.5f)
+ *     .build();
+ *
+ * TaskDTO task = TaskDTO.builder()
+ *     .name("Inspection Mission")
+ *     .taskType(TaskType.WAYPOINT)
+ *     .config(config)
+ *     .assetId("DRONE-001")
+ *     .build();
+ * }</pre>
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class TaskDTO implements Serializable {
+
+    // ============= CORE METADATA =============
+
+    /**
+     * Unique task identifier
+     */
     private UUID id;
+
+    /**
+     * Task creation timestamp
+     */
     private LocalDateTime createdAt;
+
+    /**
+     * Last modification timestamp
+     */
     private LocalDateTime modifiedAt;
+
+    /**
+     * User/system who last modified this task
+     */
     private String modifiedFrom;
+
+    /**
+     * Parent mission identifier
+     */
     private UUID missionId;
+
+    /**
+     * Task name
+     */
     private String name;
+
+    /**
+     * Task description
+     */
     private String description;
+
+    // ============= TASK TYPE & CONFIGURATION =============
+
+    /**
+     * Task type (determines which config implementation is used)
+     */
+    private TaskType taskType;
+
+    /**
+     * Type-specific configuration (polymorphic based on taskType)
+     * Can be WaypointTaskConfig, LiveStreamTaskConfig, etc.
+     */
+    private TaskConfigTemplate config;
+
+    // ============= EXECUTION CONTEXT =============
+
+    /**
+     * Current task status
+     */
     private TaskStatus status;
+
+    /**
+     * Asset/drone identifier assigned to this task
+     */
     private String assetId;
+
+    /**
+     * Serial number of the asset
+     */
     private String snNumber;
-    private String flightId;
-    private FlyToWaylineModeProto flyToWaylineMode;
-    private WaylineFinishActionProto waylineFinishAction;
-    private ExitWaylineWhenRcLostEnumProto exitWaylineWhenRcLostEnum;
-    private RcLostActionEnumProto rcLostActionEnum;
-    private Float takeOffSecurityHeight;
-    private Float globalTransitionSpeed;
-    private WaylineTypeEnumProto waylineType;
-    private String payloadImagingType;
-    private WaylineTurnModeProto waylineTurnMode;
-    private Boolean useStraightLine;
-    private WaylineGimbalPitchModeProto gimbalPitchMode;
-	private Integer globalGimbalPitch;
-    private Float globalSpeed;
-    private Float globalHeight;
-    private String fileUrl;
-    private String fileMd5;
-    private String flightAreaFileUrl;
-    private String flightAreaChecksum;
-    private Integer rthAltitude;
-    private RthModeEnumProto rthMode;
-    private Float rthSpeed;
-    private OutOfControlActionEnumProto outOfControlAction;
-    private WaylinePrecisionTypeEnumProto waylinePrecisionType;
+
+    // ============= RUNTIME STATE =============
+
+    /**
+     * Current progress percentage (0-100)
+     */
     private Integer currentProgress;
+
+    /**
+     * Current step/phase description
+     */
     private String currentStep;
+
+    /**
+     * Reason if task was interrupted/broken
+     */
     private FlighttaskBreakReasonEnumProto breakReason;
-    private List<WaypointDTO> waypoints;
+
+    // ============= VALIDATION =============
+
+    /**
+     * Validates this task and its configuration
+     * @throws IllegalArgumentException if task is invalid
+     */
+    public void validate() {
+        if (taskType == null) {
+            throw new IllegalArgumentException("Task type must be specified");
+        }
+
+        if (config == null) {
+            throw new IllegalArgumentException("Task configuration must be provided");
+        }
+
+        if (config.getTaskType() != taskType) {
+            throw new IllegalArgumentException(
+                    String.format("Config type mismatch: expected %s, got %s",
+                            taskType, config.getTaskType())
+            );
+        }
+
+        config.validate();
+    }
 }

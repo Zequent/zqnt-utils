@@ -385,6 +385,18 @@ enum TaskGoals{
   DETECT = 4;
 }
 
+// Mirrors com.zqnt.utils.missionautonomy.domains.TaskType for wire compatibility.
+enum TaskTypeProto {
+  TASK_TYPE_UNSPECIFIED = 0;
+  TASK_TYPE_DETECT = 1;
+  TASK_TYPE_AREA_MAPPING = 2;
+  TASK_TYPE_WAYPOINT = 3;
+  TASK_TYPE_POI = 4;
+  TASK_TYPE_FOLLOW = 5;
+  TASK_TYPE_TRACK = 6;
+  TASK_TYPE_COUNTER_DRONE = 7;
+}
+
 enum TaskStatus {
   TASK_UNKNOWN = 0;
   TASK_DRAFT = 1;
@@ -579,59 +591,39 @@ message MissionProtoDTO{
   optional string updatedUser = 13;
 }
 
+
+// POJO-aligned task DTO with dynamic config payload (configJson).
 message TaskProtoDTO{
   optional string id = 1;
   optional string missionId = 2;
+  optional google.protobuf.Timestamp createdAt = 35;
+  optional google.protobuf.Timestamp modifiedAt = 38;
+  optional string modifiedFrom = 39;
   optional string name = 3;
   optional string description = 4;
-  TaskStatus status = 5;
-  repeated WaypointProtoDTO waypoints = 6;
-  optional string assetId = 7;
-  optional string snNumber = 8;
-  optional FlyToWaylineModeProto flyToWaylineMode = 9;
-  optional WaylineFinishActionProto waylineFinishAction = 10;
-  optional ExitWaylineWhenRcLostEnumProto exitWaylineWhenRcLostEnum = 11;
-  optional RcLostActionEnumProto rcLostActionEnum = 12;
-  optional float takeOffSecurityHeight = 13;
-  optional float globalTransitionSpeed = 14;
-  optional WaylineTypeEnumProto waylineType = 15;
-  optional string payloadImagingType = 16;
-  optional WaylineTurnModeProto waylineTurnMode = 17;
-  optional bool useStraightLine = 18;
-  optional WaylineGimbalPitchModeProto gimbalPitchMode = 19;
-  optional float globalSpeed = 20;
-  optional float globalHeight = 21;
-  optional string fileUrl = 22;
-  optional string fileMd5 = 23;
-  optional string flightAreaFileUrl = 24;
-  optional string flightAreaChecksum = 25;
-  optional int32 rthAltitude = 26;
-  optional RthModeEnumProto rthMode = 27;
-  optional float rthSpeed = 28;
-  optional OutOfControlActionEnumProto outOfControlAction = 29;
-  optional WaylinePrecisionTypeEnumProto waylinePrecisionType = 30;
-  optional string flightId = 31;
-  optional int32 currentProgress = 32;
-  optional string currentStep = 33;
-  optional FlighttaskBreakReasonEnumProto breakReason = 34;
-  optional google.protobuf.Timestamp createdAt = 35;
-  optional google.protobuf.Timestamp updatedAt = 36;
-  optional int32 globalGimbalPitch = 37;
+  optional TaskTypeProto taskType = 5;
+  // JSON representation of task-specific config payload.
+  // Keep this dynamic to avoid protobuf schema churn for task variants.
+  optional string config = 6;
+  TaskStatus status = 7;
+  optional string assetId = 8;
+  optional string snNumber = 9;
+  optional int32 currentProgress = 10;
+  optional string currentStep = 11;
+  optional FlighttaskBreakReasonEnumProto breakReason = 12;
 
 }
 
 
 message WaypointProtoDTO{
-  optional string id = 1;
-  optional string taskId = 2;
-  double latitude = 3;
-  double longitude = 4;
-  optional float altitude = 5;
-  optional float speed = 6;
-  optional bool flyTrough = 7;
-  optional VehicleAction vehicleAction = 8;
-  optional int32 wpOrder = 9;
-  optional int32 gimbalPitch = 10;
+  double latitude = 1;
+  double longitude = 2;
+  optional float altitude = 3;
+  optional float speed = 4;
+  optional bool flyTrough = 5;
+  optional VehicleAction vehicleAction = 6;
+  optional int32 wpOrder = 7;
+  optional int32 gimbalPitch = 8;
 }
 
 message SchedulerProtoDTO{
