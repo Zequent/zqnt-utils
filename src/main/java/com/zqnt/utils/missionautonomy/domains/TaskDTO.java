@@ -1,7 +1,9 @@
 package com.zqnt.utils.missionautonomy.domains;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.zequent.framework.common.proto.*;
 import com.zqnt.utils.missionautonomy.domains.config.TaskConfigTemplate;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,6 +40,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Schema(name = "ZequentTaskDTO")
 public class TaskDTO implements Serializable {
 
     // ============= CORE METADATA =============

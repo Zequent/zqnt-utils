@@ -135,6 +135,11 @@
             <artifactId>lombok</artifactId>
             <version>1.18.42</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.20</version>
+        </dependency>
 
     </dependencies>
 
