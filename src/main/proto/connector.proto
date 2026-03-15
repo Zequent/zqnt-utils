@@ -67,7 +67,7 @@ message ConnectorCreateSchedulerRequest{
 }
 message ConnectorGetSchedulerRequest{
   RequestBase base = 1;
-  string schedulerId = 2;
+  optional string schedulerId = 2;
 }
 message ConnectorDeleteTaskRequest{
   RequestBase base = 1;
