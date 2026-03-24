@@ -29,4 +29,44 @@ public class SchedulerDTO implements Serializable {
     private Boolean active;
     private SchedulerType type;
     private String clientTimeZone;
+
+    /**
+     * Validates this scheduler configuration
+     * @throws IllegalArgumentException if scheduler is invalid
+     */
+    public void validate() {
+        if (type == null) {
+            throw new IllegalArgumentException("Scheduler type must be specified");
+        }
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Scheduler name must be provided");
+        }
+
+        if (missionId == null) {
+            throw new IllegalArgumentException("Mission ID must be specified");
+        }
+
+        if (taskId == null) {
+            throw new IllegalArgumentException("Task ID must be specified");
+        }
+
+        if (cronExpression == null || cronExpression.trim().isEmpty()) {
+            throw new IllegalArgumentException("Cron expression must be provided");
+        }
+
+        // Validate cron expression format (basic check)
+        String[] parts = cronExpression.trim().split("\\s+");
+        if (parts.length < 5 || parts.length > 7) {
+            throw new IllegalArgumentException("Invalid cron expression format: " + cronExpression);
+        }
+
+        if (active == null) {
+            throw new IllegalArgumentException("Active status must be specified");
+        }
+
+        if (clientTimeZone == null || clientTimeZone.trim().isEmpty()) {
+            throw new IllegalArgumentException("Client timezone must be provided");
+        }
+    }
 }
