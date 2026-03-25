@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.common.proto.*;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import com.zqnt.utils.missionautonomy.domains.WaypointDTO;
@@ -21,6 +22,7 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     // ============= REQUIRED FIELDS =============
 
     @Builder.Default
+    @JsonProperty(defaultValue = "TASK_TYPE_WAYPOINT")
     private String configType = TaskType.TASK_TYPE_WAYPOINT.name();
 
     /**
@@ -42,34 +44,40 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
      * Mode for flying to wayline start point
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "FTW_MODE_POINT_TO_POINT")
     private FlyToWaylineModeProto flyToWaylineMode = FlyToWaylineModeProto.FTW_MODE_POINT_TO_POINT;
 
     /**
      * Action when wayline is finished
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "WF_ACTION_GO_HOME")
     private WaylineFinishActionProto waylineFinishAction = WaylineFinishActionProto.WF_ACTION_GO_HOME;
 
     /**
      * Wayline type (straight, curved, etc.)
      */
+    @JsonProperty(defaultValue = "WT_WAYPOINT")
     @Builder.Default
     private WaylineTypeEnumProto waylineType = WaylineTypeEnumProto.WT_WAYPOINT;
 
     /**
      * Turn mode between waypoints
      */
+    @JsonProperty(defaultValue = "WT_MODE_TO_POINT_AND_PASS_WITH_CONTINUITY_CURVATURE")
     @Builder.Default
     private WaylineTurnModeProto waylineTurnMode = WaylineTurnModeProto.WT_MODE_TO_POINT_AND_PASS_WITH_CONTINUITY_CURVATURE;
 
     /**
      * Use straight line between waypoints
+    @JsonProperty(defaultValue = "true")
      */
     @Builder.Default
     private Boolean useStraightLine = true;
 
     /**
      * Wayline precision type
+    @JsonProperty(defaultValue = "PRECISION_GPS")
      */
     @Builder.Default
     private WaylinePrecisionTypeEnumProto waylinePrecisionType = WaylinePrecisionTypeEnumProto.PRECISION_GPS;
@@ -78,22 +86,26 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     /**
      * Behavior when RC signal is lost during wayline
+    @JsonProperty(defaultValue = "EWWRL_EXECUTE_RC_LOST_ACTION")
      */
     @Builder.Default
     private ExitWaylineWhenRcLostEnumProto exitWaylineWhenRcLostEnum = ExitWaylineWhenRcLostEnumProto.EWWRL_EXECUTE_RC_LOST_ACTION;
 
     /**
+    @JsonProperty(defaultValue = "RC_LOST_ACTION_RETURN_HOME")
      * Action when RC is lost
      */
     @Builder.Default
     private RcLostActionEnumProto rcLostActionEnum = RcLostActionEnumProto.RC_LOST_ACTION_RETURN_HOME;
 
     /**
+    @JsonProperty(defaultValue = "OOC_RETURN_TO_HOME")
      * Action when out of control
      */
     @Builder.Default
     private OutOfControlActionEnumProto outOfControlAction = OutOfControlActionEnumProto.OOC_RETURN_TO_HOME;
 
+    @JsonProperty(defaultValue = "10.0")
     /**
      * Take-off security height in meters
      */
@@ -119,18 +131,21 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
 
     // ============= SPEED & MOVEMENT =============
 
+    @JsonProperty(defaultValue = "5.0")
     /**
      * Global speed for all waypoints in m/s (can be overridden per waypoint)
      */
     @Builder.Default
     private Float globalSpeed = 5.0f;
 
+    @JsonProperty(defaultValue = "8.0")
     /**
      * Global transition speed between waypoints in m/s
      */
     @Builder.Default
     private Float globalTransitionSpeed = 8.0f;
 
+    @JsonProperty(defaultValue = "50.0")
     /**
      * Global height for all waypoints in meters (can be overridden per waypoint)
      */
@@ -138,13 +153,15 @@ public class WaypointTaskConfig implements TaskConfigTemplate {
     private Float globalHeight = 50.0f;
 
     // ============= GIMBAL CONTROL =============
-
+@JsonProperty(defaultValue = "WGP_MODE_LOOK_DOWN")
+    
     /**
      * Gimbal pitch control mode
      */
     @Builder.Default
     private WaylineGimbalPitchModeProto gimbalPitchMode = WaylineGimbalPitchModeProto.WGP_MODE_LOOK_DOWN;
-
+@JsonProperty(defaultValue = "-45")
+    
     /**
      * Global gimbal pitch in degrees (-90 to 0, where -90 is straight down)
      */

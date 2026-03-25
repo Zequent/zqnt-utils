@@ -1,5 +1,6 @@
 package com.zqnt.utils.missionautonomy.domains.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zqnt.utils.missionautonomy.domains.TaskType;
 import lombok.*;
 
@@ -15,6 +16,7 @@ public class FollowTaskConfig implements TaskConfigTemplate {
 
     @Builder.Default
     @NonNull
+    @JsonProperty(defaultValue = "TASK_TYPE_FOLLOW")
     private String configType = TaskType.TASK_TYPE_FOLLOW.name();
 
     /**
@@ -38,24 +40,28 @@ public class FollowTaskConfig implements TaskConfigTemplate {
      * Follow distance in meters (distance to maintain from target)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "15.0")
     private Float followDistance = 15.0f;
 
     /**
      * Follow altitude relative to target in meters
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10.0")
     private Float relativeAltitude = 10.0f;
 
     /**
      * Maximum follow speed in m/s
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "10.0")
     private Float maxSpeed = 10.0f;
 
     /**
      * Follow mode (behind, above, side, custom)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "behind")
     private String followMode = "behind";
 
     /**
@@ -63,12 +69,14 @@ public class FollowTaskConfig implements TaskConfigTemplate {
      * 0 = directly behind, 90 = right side, -90 = left side, 180 = in front
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "0")
     private Integer angleOffset = 0;
 
     /**
      * Enable obstacle avoidance during follow
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean obstacleAvoidance = true;
 
     /**
@@ -85,18 +93,21 @@ public class FollowTaskConfig implements TaskConfigTemplate {
      * Lost target behavior (hover, return_to_home, land)
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "hover")
     private String lostTargetAction = "hover";
 
     /**
      * Target lost timeout in seconds before executing lostTargetAction
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "30")
     private Integer lostTargetTimeout = 30;
 
     /**
      * Keep camera locked on target
      */
     @Builder.Default
+    @JsonProperty(defaultValue = "true")
     private Boolean lockCameraOnTarget = true;
 
     /**
