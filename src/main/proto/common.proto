@@ -638,7 +638,7 @@ message WaypointProtoDTO{
 }
 
 message SchedulerProtoDTO{
-  string id = 1;
+  optional string id = 1;
   string name = 2;
   optional string missionId = 3;
   optional string taskId = 4;
