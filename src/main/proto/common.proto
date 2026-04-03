@@ -566,6 +566,7 @@ message SubAssetProtoDTO{
   bool online = 14;
   optional string externalId = 15;
   LiveStreamTypeEnum streamType = 16;
+  optional bool streamUrlPredefined = 17;
 }
 
 message OrganizationProtoDTO{
