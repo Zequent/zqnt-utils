@@ -106,3 +106,29 @@ jobs:
               repo: context.repo.repo,
               body: comment
             });
+
+  buf:
+    name: Buf Lint & Push (Draft)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v5
+        with:
+          java-version: 21
+          distribution: temurin
+          cache: maven
+
+      - name: Compute BSR label
+        id: label
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          PR_NUMBER=${{ github.event.pull_request.number }}
+          BASE_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout | sed 's/-SNAPSHOT//')
+          echo "value=${BASE_VERSION}-PR${PR_NUMBER}-${COMMIT_SHA}-SNAPSHOT" >> $GITHUB_OUTPUT
+
+      - uses: bufbuild/buf-action@v1
+        with:
+          token: ${{ secrets.BUF_TOKEN }}
+          input: src/main/proto
+          push_labels: ${{ steps.label.outputs.value }}
