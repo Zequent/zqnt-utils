@@ -134,3 +134,4 @@ jobs:
           push_labels: ${{ steps.label.outputs.value }}
           format: false
           lint: false
+          push: true

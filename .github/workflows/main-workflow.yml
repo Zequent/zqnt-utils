@@ -70,3 +70,4 @@ jobs:
           push_labels: ${{ steps.version.outputs.value }}
           format: false
           lint: false
+          push: true
